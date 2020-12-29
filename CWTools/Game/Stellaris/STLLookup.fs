@@ -10,8 +10,6 @@ module STLLookup =
     type STLComputedData(eventids, setvariables, setflags, savedeventtargets, referencedtypes, hastechs, definedvariable, withRulesData, effectBlocks, triggersBlocks, scriptedeffectparams, savedEventTargets) =
         inherit ComputedData(referencedtypes, definedvariable, withRulesData, effectBlocks, triggersBlocks, savedEventTargets)
         member __.Eventids : string list = eventids
-        member __.Setvariables : string list = setvariables
-        member __.Setflags : (FlagType * string) list = setflags
         member __.Savedeventtargets : string list = savedeventtargets
         member __.Hastechs : string list = hastechs
         member __.ScriptedEffectParams : string list option = scriptedeffectparams
@@ -45,12 +43,8 @@ module STLLookup =
 
     let manualEffectScopeOverrides =
         [
-            "set_variable", [scopeManager.ParseScope() "Planet"; scopeManager.ParseScope() "Country"; scopeManager.ParseScope() "Fleet"; scopeManager.ParseScope() "GalacticObject"; scopeManager.ParseScope() "Leader"; scopeManager.ParseScope() "Federation"]
-            "change_variable", [scopeManager.ParseScope() "Planet"; scopeManager.ParseScope() "Country"; scopeManager.ParseScope() "Fleet"; scopeManager.ParseScope() "GalacticObject"; scopeManager.ParseScope() "Leader"; scopeManager.ParseScope() "Federation"]
-            "subtract_variable", [scopeManager.ParseScope() "Planet"; scopeManager.ParseScope() "Country"; scopeManager.ParseScope() "Fleet"; scopeManager.ParseScope() "GalacticObject"; scopeManager.ParseScope() "Leader"; scopeManager.ParseScope() "Federation"]
-            "multiply_variable", [scopeManager.ParseScope() "Planet"; scopeManager.ParseScope() "Country"; scopeManager.ParseScope() "Fleet"; scopeManager.ParseScope() "GalacticObject"; scopeManager.ParseScope() "Leader"; scopeManager.ParseScope() "Federation"]
-            "divide_variable", [scopeManager.ParseScope() "Planet"; scopeManager.ParseScope() "Country"; scopeManager.ParseScope() "Fleet"; scopeManager.ParseScope() "GalacticObject"; scopeManager.ParseScope() "Leader"; scopeManager.ParseScope() "Federation"]
-        ] |> Map.ofList
+ //           "set_variable", [scopeManager.ParseScope() "Planet"; scopeManager.ParseScope() "Country"; scopeManager.ParseScope() "Fleet"; scopeManager.ParseScope() "GalacticObject"; scopeManager.ParseScope() "Leader"; scopeManager.ParseScope() "Federation"]
+         ] |> Map.ofList
 
     let updateScriptedEffects (resources : IResourceAPI<STLComputedData>) (vanillaEffects : Effect list) (scriptedTriggers : Effect list) =
         let rawEffects =
